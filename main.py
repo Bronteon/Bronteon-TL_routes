@@ -102,6 +102,8 @@ if __name__ == "__main__":
     for ip in logged_ips:
         add_route(ip, subnet_mask, gateway, metric)
 
+    print(f"{len(logged_ips)} routes added")
+
     pid = None
     while pid is None:
         try:
