@@ -15,6 +15,7 @@ previous_connections = set()
 #VPN route details
 subnet_mask = "255.255.255.255"
 gateway = "10.8.0.1"
+local_intf = "10.0.0.2"
 metric = 2
 
 def find_process_by_name(name):
@@ -70,7 +71,7 @@ def add_route(destination, subnet_mask, gateway, metric=1):
     """
     try:
         # Command to add a new route
-        command = ["route", "add", destination, "mask", subnet_mask, gateway, "metric", str(metric)]
+        command = ["route", "add", destination, "mask", subnet_mask, gateway, "metric", str(metric), "if", local_intf]
         
         # Run the command as admin using subprocess
         result = subprocess.run(command, shell=True, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
